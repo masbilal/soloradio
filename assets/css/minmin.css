@@ -1,0 +1,103 @@
+@font-face {
+  font-family: defaultFont;
+  src: url(../fonts/Montserrat-Regular.ttf);
+}
+
+body,h1,h2,h3,h4,h5{
+	font-weight: 100;
+}
+
+/* LOGIN */
+.wrap{
+	font-family: defaultFont,Roboto,"Helvetica Neue",Arial;
+	width: 90%;
+	margin: 10vh auto 20px auto;
+	width: 400px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 5px #bdc3c7;
+	overflow: hidden;
+}
+.login-head{
+	padding: 16px;
+	text-align: center;
+	background: #f1c40f;
+	color: #fff;
+	font-size: 140%;
+}
+.login-head img{
+	height: 100px;
+}
+.login{
+	padding: 30px;
+	background: #fff;
+}
+.login .form-group{
+	padding: 10px;
+}
+.login .form-group label{
+	margin-bottom: .2rem;
+}
+.login-footer{
+	text-align: center;
+}
+
+/* POSTINGAN */
+.thumbnail-post{
+	max-height: 80px;
+	max-width: 140px;
+}
+
+/* PAGINATION */
+.pagination{
+	display: block;
+	width: 100%;
+	padding: 20px 10px;
+	box-sizing: border-box;
+	text-align: center;
+}
+.pagination .item{
+	border: 1px solid #27ae60;
+	color: #27ae60;
+	padding: 5px 10px;
+	border-radius: 6px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.pagination .item.active,
+.pagination .item:Hover{
+	background: #27ae60;
+	color: #fff;
+}
+
+/* PLAYLIST */
+.laguwrap{
+	
+}
+.lagu{
+	width: 100%;
+}
+.lagu li{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 6px 10px;
+	border: 1px solid #bdc3c7;
+	cursor: move;
+	font-weight: bold;
+	margin-bottom: 8px;
+	border-radius: 5px;
+}
+
+.form-group{
+	padding: 5px 10px;
+}
+
+/* USABLE */
+.tox-statusbar__branding{
+	display: none;
+}
+
+@media only screen and (max-width: 768px){
+	.wrap{
+		width: 100%;
+	}
+}
