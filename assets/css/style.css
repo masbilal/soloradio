@@ -25,7 +25,7 @@ body{
 /* PLAYLIST */
 .topsong{
 	text-align: center;
-	background: #ecf0f1;
+	/* background: #ecf0f1; */
 	border-bottom: 4px solid #ecf0f1;
 	padding: 5px 0 10px 0;
 	cursor: pointer;
@@ -34,8 +34,8 @@ body{
 	border-bottom: 4px solid #f39c12;
 }
 .topsong:hover{
-	background: #fff;
-	border-bottom: 4px solid #fff;
+	/* background: #fff; */
+	border-bottom: 4px solid #ecc482;
 }
 
 

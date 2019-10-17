@@ -146,6 +146,10 @@ img {
   height: 800px !important; }
 
 /* :: 3.3.0 Section Padding */
+.section-padding-50-0{
+  padding-top: 50px;
+  padding-bottom: 0px;
+}
 .section-padding-100 {
   padding-top: 100px;
   padding-bottom: 100px; }
@@ -164,7 +168,7 @@ img {
 
 .section-padding-150-0{
   padding-top: 150px;
-  padding-bottom: 0px;
+  padding-bottom: 250px;
 }
 .section-padding-150-150{
   padding: 150px 0 50px 0;
@@ -234,7 +238,7 @@ img {
 .bg-transparent {
   background-color: transparent !important; }
 .bg-yellow{
-  background-color: #f9cc41;
+  background-color: rgb(247,194,0);
 }
 .bg-grey{
   background-color: #fafafa;
@@ -486,7 +490,7 @@ img {
 
 /* Global Header */
 .global-header{
-  background: #ffdd76 !important;
+  background: rgb(247,194,0) !important;
 }
 /* :: 5.0 Hero Slides Area */
 .hero-area {
@@ -654,6 +658,7 @@ img {
   100% {
     -webkit-transform: scale(1);
     transform: scale(1); } }
+    
 /* :: 6.0 About Us CSS */
 .about-content h4 {
   color: #ffffff;
@@ -1464,7 +1469,8 @@ img {
 
 /* :: 15.0 Footer Area CSS */
 .footer-area {
-  background: #333;
+  border-top: 1px solid #ddd;
+  background: #f5f5f5;
   position: relative;
   z-index: 1;
   padding-left: 5%;
@@ -1474,16 +1480,16 @@ img {
       padding-left: 2%;
       padding-right: 2%; } }
   .footer-area .footer-widget-area .copywrite-text {
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 0;
-    color: #fff;
+    color: #6a6a6a;
     font-weight: 500; }
     .footer-area .footer-widget-area .copywrite-text a {
-      color: #fff;
-      font-size: 14px;
+      color: #555;
+      font-size: 16px;
       font-weight: 500; }
       .footer-area .footer-widget-area .copywrite-text a:hover, .footer-area .footer-widget-area .copywrite-text a:focus {
-        color: #ffc107; }
+        color: #000; }
   .footer-area .footer-widget-area .widget-title h4 {
     font-size: 24px;
     font-weight: 900;
@@ -1495,12 +1501,13 @@ img {
     z-index: 1; }
     .footer-area .footer-widget-area .footer-nav li a {
       display: block;
-      color: #6a6a6a;
-      font-size: 14px;
+      color: #555;
+      font-size: 18px;
       margin-bottom: 15px;
-      font-weight: 600; }
+      font-weight: 500; }
       .footer-area .footer-widget-area .footer-nav li a:hover, .footer-area .footer-widget-area .footer-nav li a:focus {
-        color: #bd177a; }
+        color: #000;
+        text-decoration: none; }
     .footer-area .footer-widget-area .footer-nav li:last-child a {
       margin-bottom: 0; }
   .footer-area .footer-widget-area .subscribe-form {
@@ -2237,7 +2244,7 @@ img {
   text-align: center;
   box-shadow: 0px -1px 5px 0px rgba(0, 0, 0,0.8);
 }
-.icon-footer{
+.icon-footer, .icon-social{
   padding: 10px 0;
 }
 .icon-footer a{
@@ -2245,7 +2252,7 @@ img {
   font-size:20px;
 }
 
-.icon-footer i{
+.icon-footer i, .icon-social i{
   transition: transform 1s, filter .3s ease-in-out;
 }
 .icon-footer a:hover, .icon-footer i:hover{
@@ -2257,6 +2264,18 @@ img {
   /* transition: all .2s ease-in-out; */
 }
 
+.icon-social a{
+  color: #5a5a5a;
+  font-size: 20px;
+}
+.icon-social a:hover, .icon-social i:hover{
+  color: #222;
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(2);
+  /* transition: all .2s ease-in-out; */
+}
 /* Sidebar */
 .wrapper-sidebar {
   display: flex;
@@ -2446,7 +2465,9 @@ a[data-toggle="collapse"] {
   }
 
   .page-title h3{
-    font-size: 32px;
+    font-size: 24px;
+    line-height: 1.5;
+    letter-spacing: 1.5px;
   }
   .section-padding-150-0{
     padding: 100px 0 0 0;
@@ -2461,6 +2482,11 @@ a[data-toggle="collapse"] {
   .bg-playlist{
     display: none;
   }
+  #sidebarCollapse span {
+    width: 54%;
+    height: 1px;
+  }
+
 }
 
 @media (min-width: 768px) and (max-width: 1024px){
@@ -2537,7 +2563,7 @@ a[data-toggle="collapse"] {
   height: 2px;
   margin: 0 auto;
   display: block;
-  background: #555;
+  background: #000;
   transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
 }
 #sidebarCollapse.active span:first-of-type {

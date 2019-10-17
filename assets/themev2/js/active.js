@@ -1,6 +1,16 @@
 (function ($) {
     'use strict';
-    
+    $(window).scroll(function(){
+		var scroll = $(window).scrollTop();
+		if (scroll > 300) {
+		  $(".musica-main-menu").css("background" , "rgb(247,194,0)");
+		}
+  
+		else{
+			$(".musica-main-menu").css("background" , "rgba(255, 255, 255, 0.39)");  	
+		}
+	})
+
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
         $(this).toggleClass('active');

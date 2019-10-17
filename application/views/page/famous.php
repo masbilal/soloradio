@@ -7,7 +7,7 @@
 		?>
             <div class="row m-b-50">
                 <div class="col-md-6">
-                    <iframe width="500" height="315" src="https://www.youtube.com/embed/<?=$r->thumbnail?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/<?=$r->thumbnail?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="col-md-6">
                     <h3 class="m-b-10"><?=$r->judul?></h3>

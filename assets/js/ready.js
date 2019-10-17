@@ -8,7 +8,6 @@ jQuery(document).ready(function(){
 });
 
 $(document).ready(function(){
-
 	var toggle_sidebar = false,
 	toggle_topbar = false,
 	nav_open = 0,
@@ -48,10 +47,11 @@ $(document).ready(function(){
 		toggle_topbar = true;
 	}
 
-//select all
-$('[data-select="checkbox"]').change(function(){
-	$target = $(this).attr('data-target');
-	$($target).prop('checked', $(this).prop("checked"));
-})
+	//select all
+	$('[data-select="checkbox"]').change(function(){
+		$target = $(this).attr('data-target');
+		$($target).prop('checked', $(this).prop("checked"));
+	})
 
+	
 });
