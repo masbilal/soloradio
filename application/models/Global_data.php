@@ -105,6 +105,27 @@ class Global_data extends CI_Model{
 		return $result;
 	}
 
+	// GET SLIDER
+	function getSlider($id,$what,$opo="id"){
+		$this->db->where($opo,$id);
+		$this->db->limit(1);
+		$res = $this->db->get("slider");
+
+		if($what == "semua"){
+			$result = array();
+			foreach($res->result() as $key => $value){
+				$result[$key] = $value;
+			}
+			$result = $result[0];
+		}else{
+			$result = null;
+			foreach($res->result() as $re){
+				$result = $re->$what;
+			}
+		}
+		return $result;
+	}
+
 	// GET PENYIAR
 	function getPenyiar($id,$what,$opo="id"){
 		$this->db->where($opo,$id);

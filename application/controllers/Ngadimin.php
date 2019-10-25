@@ -451,6 +451,149 @@ class Ngadimin extends CI_Controller {
 		}
 	}
 	
+	/* SLIDER */
+	public function slider(){
+		if(!$_SESSION["isMasok"]){
+			redirect("ngadimin/login");
+			exit;
+		}
+		
+		if(isset($_GET['load']) AND $_GET['load'] == "true"){
+			$page = (isset($_GET["page"]) AND $_GET["page"] != "") ? $_GET["page"] : 1;
+			$perpage = (isset($_GET["perpage"]) AND $_GET["perpage"] != "") ? $_GET["perpage"] : 10;
+			$cari = (isset($_GET["cari"]) AND $_GET["cari"] != "") ? $_GET["cari"] : "";
+			
+			$where = "nama LIKE '%$cari%' OR foto LIKE '%$cari%'";
+			$this->db->where($where);
+			$row = $this->db->get("slider");
+			
+			$this->db->where($where);
+			$this->db->limit($perpage,($page-1)*$perpage);
+			$this->db->order_by("id DESC");
+			$db = $this->db->get("slider");
+			
+			echo "
+				<table class='table'>
+					<tr>
+						<th>#</th>
+						<th>Nama Slider</th>
+						<th>Aksi</th>
+					</tr>
+			";
+			if($row->num_rows() == 0){
+				echo "
+						<tr>
+							<th class='text-center text-danger' colspan=4>Belum ada slider.</th>
+						</tr>
+				";
+			}
+			$default = base_url("assets/img/no-image.png");
+			$no = 1 + (($page-1)*$perpage);
+			foreach($db->result() as $r){
+				$url = base_url("assets/uploads/slider/").$r->foto;
+				$thumbnail = (filter_var($url, FILTER_VALIDATE_URL)) ? $url : $default;
+				$thumbnail = "<img src='".$thumbnail."' class='thumbnail-post' />";
+				$button = "
+					<a href='".site_url('ngadimin/sliderform/'.$r->id)."' class='btn btn-primary'><i class='la la-pencil'></i></a>
+					<a href='javascript:void(0)' onclick='hapus(".$r->id.")' class='btn btn-danger'><i class='la la-trash'></i></a>";
+					
+				echo "
+					<tr>
+						<td style='width:160px;'>$thumbnail</td>
+						<td>".$r->nama."</td>
+						<td>
+						".$button."
+						</td>
+					</tr>
+				";
+				$no++;
+			}
+			echo "
+				</table>
+			";
+			echo $this->func->createPagination($row->num_rows(),$page,$perpage);
+		}else{
+			$this->load->view('admin/head',["menu"=>7]);
+			$this->load->view('admin/slider');
+			$this->load->view('admin/foot');
+		}
+	}
+	public function sliderform($id=0){
+		if(!$_SESSION["isMasok"]){
+			redirect("ngadimin/login");
+			exit;
+		}
+		
+		if(isset($_POST["nama"])){
+			$data = [
+				"tgl"	=> date("Y-m-d H:i:s"),
+				"nama"	=> $_POST["nama"],
+				"usrid"	=> $_SESSION["usrid"]
+			];
+			
+			if(isset($_FILES['foto']) AND $_FILES['foto']['size'] != 0 AND $_FILES['foto']['error'] == 0){
+				$config['upload_path'] = './assets/uploads/slider/';
+				$config['allowed_types'] = 'gif|jpg|png|jpeg';
+				$config['file_name'] = "slider_".$_SESSION["usrid"].date("YmdHis");
+
+				$this->load->library('upload', $config);
+				if ( ! $this->upload->do_upload('foto')){
+					print_r($this->upload->display_errors());
+				}else{
+					$uploadData = $this->upload->data();
+					$this->load->library('image_lib');
+					$config_resize['image_library'] = 'gd2';
+					$config_resize['maintain_ratio'] = TRUE;
+					$config_resize['master_dim'] = 'height';
+					$config_resize['quality'] = "100%";
+					$config_resize['source_image'] = $config['upload_path'].$uploadData["file_name"];
+
+					$config_resize['width'] = 1400;
+					$config_resize['height'] = 1400;
+					$this->image_lib->initialize($config_resize);
+					$this->image_lib->resize();
+					
+					$data["foto"] = $uploadData["file_name"];
+				}
+				$this->upload = null;
+			}
+			
+			if($_POST["id"] > 0){
+				$this->db->where("id",$_POST["id"]);
+				$this->db->update("slider",$data);
+				
+				//print_r($thumb);
+				redirect("ngadimin/slider");
+			}else{
+				$this->db->insert("slider",$data);
+				$insertid = $this->db->insert_id();
+				
+				redirect("ngadimin/slider");
+			}
+		}else{
+			$this->load->view("admin/head",["menu"=>7]);
+			$this->load->view("admin/sliderform",["id"=>$id]);
+			$this->load->view("admin/foot");
+		}
+	}
+	public function hapusslider(){
+		if(!$_SESSION["isMasok"]){
+			redirect("ngadimin/login");
+			exit;
+		}
+		
+		if(isset($_POST["theid"])){
+			$this->db->where("id",$_POST["theid"]);
+			if($this->db->delete("slider")){
+				echo json_encode(["success"=>true]);
+			}else{
+				echo json_encode(["success"=>false]);
+			}
+		}else{
+			echo json_encode(["success"=>false]);
+		}
+	}
+	
 	/* PLAYLIST*/
 	public function playlist(){
 		if(!$_SESSION["isMasok"]){

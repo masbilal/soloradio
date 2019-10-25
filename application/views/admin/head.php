@@ -85,6 +85,12 @@
 							<p>DJ & Crew</p>
 						</a>
 					</li>
+					<li class="nav-item <?php echo (isset($menu) AND $menu == 7) ? "active" : "" ?>">
+						<a href="<?=site_url("ngadimin/slider")?>">
+							<i class="la la-image"></i>
+							<p>Slider Foto</p>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>

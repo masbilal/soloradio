@@ -1,12 +1,15 @@
 
     <section class="hero-area">
         <div class="hero-slides owl-carousel" style="position: relative;">
-            <div class="single-hero-slide d-flex align-items-center justify-content-center">
-                <div class="slide-img bg-img" style="background-image: url(<?php echo base_url("assets/themev2/img/bg-img/bg1.jpg"); ?>);"></div>
-            </div>
-            <div class="single-hero-slide d-flex align-items-center justify-content-center">
-                <div class="slide-img bg-img" style="background-image: url(<?php echo base_url("assets/img/bg-web.png"); ?>);"></div>
-            </div>
+			<?php
+				$this->db->order_by("id","DESC");
+				$db = $this->db->get("slider");
+				foreach($db->result() as $r){
+			?>
+				<div class="single-hero-slide d-flex align-items-center justify-content-center">
+					<div class="slide-img bg-img" style="background-image: url(<?php echo base_url("assets/uploads/slider/".$r->foto); ?>);"></div>
+				</div>
+			<?php } ?>
         </div>
 
         <div class="box-social">

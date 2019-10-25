@@ -73,9 +73,9 @@
 				<div class="page-title p-t-20 p-l-40">
 					<?php if(isset($titel)){ ?>
 						<h3 class="l-text2"><?=$titel?></h3>
-					<?php }/*else{ ?>
+					<?php }else{ ?>
 						<img class="logo" src="<?php echo base_url("assets/img/logo.png"); ?>" />
-					<?php }*/ ?>
+					<?php } ?>
                 </div>
 
                 <div class="box-news">
