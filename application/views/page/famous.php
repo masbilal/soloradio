@@ -20,7 +20,8 @@
 			if($db->num_rows() == 0){
 				echo "
 					<div class='text-center'>
-						Belum ada info terbaru.<br/>
+						<img class='p-t-100 m-b-20' src='".base_url('assets/img/headphone.png')."' style='width: 200px;'/>
+						<p class='m-text1'>Ups, Belum ada info terbaru.</p>
 						<a href='".site_url()."'>Kembali Ke Beranda</a>
 					</div>
 				";
