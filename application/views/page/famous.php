@@ -6,7 +6,7 @@
 			foreach($db->result() as $r){
 		?>
             <div class="row m-b-50">
-                <div class="col-md-6">
+                <div class="col-md-6 video-iframe">
                     <iframe width="100%" height="250" src="https://www.youtube.com/embed/<?=$r->thumbnail?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="col-md-6">

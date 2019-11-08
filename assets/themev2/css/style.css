@@ -547,6 +547,9 @@ img {
     .single-hero-slide {
       height: 800px !important;
     }
+    .logo{
+      height: 40px !important;
+    }
   }
   @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .single-hero-slide {
@@ -2915,4 +2918,9 @@ a[data-toggle="collapse"] {
   color: #222222;
   text-decoration: none;
 
+}
+
+.video-iframe iframe{
+  width: 100% !important;
+  height: 250px !important;
 }
