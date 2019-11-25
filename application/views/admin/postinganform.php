@@ -11,7 +11,7 @@
 	}
 ?>
 
-<form id="postingan" action="" method="POST">
+<form id="postingan" action="" enctype="multipart/form-data" method="POST">
 	<input type="hidden" name="id" value="<?=$id?>" />
 	<div class="card">
 		<div class="card-header">
@@ -47,8 +47,16 @@
 		</div>
 		<div class="card-body">
 			<div class="form-group">
+				<label>Foto Thumbnail</label>
+				<input type="file" class="form-control" name="thumb" />
+				<small class="text-danger"><i>
+					Ukuran file maksimal 500 KB (500px X 500px).&nbsp;
+					Apabila foto kosong, maka thumbnail diambilkan dari youtube
+				</i></small>
+			</div>
+			<div class="form-group">
 				<label>Video (Youtube)</label>
-				<input type="text" class="form-control" name="linkyt" value="<?php echo ($id != 0) ? $data->linkyt : ""; ?>" placeholder="contoh: https://youtube.com/?v=Ar2Rfjks" required />
+				<input type="text" class="form-control" name="linkyt" value="<?php echo ($id != 0) ? $data->linkyt : ""; ?>" placeholder="contoh: https://youtube.com/?v=Ar2Rfjks" />
 			</div>
 			<div class="form-group">
 				<label>Text Konten/Isi</label>

@@ -33,41 +33,102 @@ class Global_data extends CI_Model{
 	}
 	
 	// GET HOME STAT
-	function getFamousUpdate(){
+	function getEventUpdate($jen=1){
+		$this->db->where("kategori",5);
+		if($jen == 1){
+			$this->db->limit(1);
+		}else{
+			$this->db->limit(3);
+		}
+		$this->db->order_by("id DESC");
+		$db = $this->db->get("postingan");
+		
+		$result = ($jen == 1) ? "No Updates" : "";
+		foreach($db->result() as $r){
+			if($jen == 1){
+				$result = $r->judul;
+			}else{
+				$result .= "
+					<li>
+						<a href=\"".site_url("post/".$r->url)."\" style=\"color: #333;\">".$r->judul."</a>
+					</li>
+				";
+			}
+		}
+		
+		return $result;
+	}
+	function getFamousUpdate($jen=1){
 		$this->db->where("kategori",2);
-		$this->db->limit(1);
+		if($jen == 1){
+			$this->db->limit(1);
+		}else{
+			$this->db->limit(3);
+		}
 		$this->db->order_by("id DESC");
 		$db = $this->db->get("postingan");
 		
-		$result = "No Updates";
+		$result = ($jen == 1) ? "No Updates" : "";
 		foreach($db->result() as $r){
-			$result = $r->judul;
+			if($jen == 1){
+				$result = $r->judul;
+			}else{
+				$result .= "
+					<li>
+						<a href=\"".site_url("post/".$r->url)."\" style=\"color: #333;\">".$r->judul."</a>
+					</li>
+				";
+			}
 		}
 		
 		return $result;
 	}
-	function getFitUpdate(){
+	function getFitUpdate($jen=1){
 		$this->db->where("kategori",3);
-		$this->db->limit(1);
+		if($jen == 1){
+			$this->db->limit(1);
+		}else{
+			$this->db->limit(3);
+		}
 		$this->db->order_by("id DESC");
 		$db = $this->db->get("postingan");
 		
-		$result = "No Updates";
+		$result = ($jen == 1) ? "No Updates" : "";
 		foreach($db->result() as $r){
-			$result = $r->judul;
+			if($jen == 1){
+				$result = $r->judul;
+			}else{
+				$result .= "
+					<li>
+						<a href=\"".site_url("post/".$r->url)."\" style=\"color: #333;\">".$r->judul."</a>
+					</li>
+				";
+			}
 		}
 		
 		return $result;
 	}
-	function getFashionableUpdate(){
+	function getFashionableUpdate($jen=1){
 		$this->db->where("kategori",4);
-		$this->db->limit(1);
+		if($jen == 1){
+			$this->db->limit(1);
+		}else{
+			$this->db->limit(3);
+		}
 		$this->db->order_by("id DESC");
 		$db = $this->db->get("postingan");
 		
-		$result = "No Updates";
+		$result = ($jen == 1) ? "No Updates" : "";
 		foreach($db->result() as $r){
-			$result = $r->judul;
+			if($jen == 1){
+				$result = $r->judul;
+			}else{
+				$result .= "
+					<li>
+						<a href=\"".site_url("post/".$r->url)."\" style=\"color: #333;\">".$r->judul."</a>
+					</li>
+				";
+			}
 		}
 		
 		return $result;

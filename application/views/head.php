@@ -13,7 +13,11 @@
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title><?php echo (isset($titel)) ? $titel." | " : ""; ?>Solo Radio</title>
+    <title>
+		<?php echo (isset($titel)) ? $titel." | " : ""; ?>
+		<?php echo (isset($post)) ? $post." | " : ""; ?>
+		Solo Radio
+	</title>
     <link rel="icon" href="<?php echo base_url("assets/img/smilly.png"); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/themev2/css/style.css"); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/themev2/css/util.css"); ?>">

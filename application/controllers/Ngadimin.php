@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Ngadimin extends CI_Controller {
 
 	public function index(){
-		if(!$_SESSION["isMasok"]){
+		if(!isset($_SESSION["isMasok"])){
 			redirect("ngadimin/login");
 			exit;
 		}
@@ -53,7 +53,7 @@ class Ngadimin extends CI_Controller {
 			$default = base_url("assets/img/no-image.png");
 			$no = 1 + (($page-1)*$perpage);
 			foreach($db->result() as $r){
-				$url = "https://img.youtube.com/vi/".$r->thumbnail."/mqdefault.jpg";
+				$url = $r->thumbnail;
 				$thumbnail = (filter_var($url, FILTER_VALIDATE_URL)) ? $url : $default;
 				$thumbnail = "<img src='".$thumbnail."' class='thumbnail-post' />";
 				echo "
@@ -86,8 +86,46 @@ class Ngadimin extends CI_Controller {
 		}
 		
 		if(isset($_POST["judul"])){
-			$thumb = explode("v=",$_POST["linkyt"]);
-			$thumb = explode("&",$thumb[1]);
+			$config['upload_path'] = './assets/uploads/';
+			$config['allowed_types'] = 'gif|jpg|jpeg|png';
+			$config['file_name'] = "POST_".date("YmdHis");
+			$filename = "";
+			
+			if(isset($_POST["thumb"])){
+				$this->load->library('upload', $config);
+				if ( ! $this->upload->do_upload('thumb')){
+					$error = $this->upload->display_errors();
+					print_r($error);
+					//redirect("404_notfound");
+				}else{
+					$upload_data = $this->upload->data();
+					$this->load->library('image_lib');
+					$config_resize['image_library'] = 'gd2';
+					$config_resize['maintain_ratio'] = TRUE;
+					$config_resize['master_dim'] = 'height';
+					$config_resize['quality'] = "100%";
+					$config_resize['source_image'] = $config['upload_path'].$upload_data["file_name"];
+					$config_resize['width'] = 1024;
+					$config_resize['height'] = 1024;
+					$this->image_lib->initialize($config_resize);
+					$this->image_lib->resize();
+
+					$filename = $upload_data['file_name'];
+				}
+			}
+			
+			if($filename != ""){
+				$thumb = base_url("assets/uploads/".$filename);
+			}else{
+				if(strpos($_POST["linkyt"],"youtu") == true){
+					$thumb = explode("v=",$_POST["linkyt"]);
+					$thumb = explode("&",$thumb[1]);
+					$thumb = "https://img.youtube.com/vi/".$thumb[0]."/mqdefault.jpg";
+				}else{
+					$thumb = base_url("assets/img/no-image.png");
+				}
+			}
+			
 			$data = [
 				"tgl"	=> date("Y-m-d H:i:s"),
 				"usrid"	=> $_SESSION["usrid"],
@@ -95,7 +133,7 @@ class Ngadimin extends CI_Controller {
 				"kategori"	=> $_POST["kategori"],
 				"linkyt"=> $_POST["linkyt"],
 				"konten"=> $_POST["konten"],
-				"thumbnail"	=> $thumb[0]
+				"thumbnail"	=> $thumb
 			];
 			
 			if($_POST["id"] > 0){
@@ -811,7 +849,7 @@ class Ngadimin extends CI_Controller {
 			$default = base_url("assets/img/no-image.png");
 			$no = 1 + (($page-1)*$perpage);
 			foreach($db->result() as $r){
-				$url = "https://img.youtube.com/vi/".$r->thumbnail."/mqdefault.jpg";
+				$url = $r->thumbnail;
 				$thumbnail = (filter_var($url, FILTER_VALIDATE_URL)) ? $url : $default;
 				$thumbnail = "<img src='".$thumbnail."' class='thumbnail-post' />";
 				echo "
@@ -853,7 +891,7 @@ class Ngadimin extends CI_Controller {
 				"kategori"	=> 1,
 				"linkyt"=> $_POST["linkyt"],
 				"konten"=> $_POST["konten"],
-				"thumbnail"	=> $thumb[0]
+				"thumbnail"	=> "https://img.youtube.com/vi/".$thumb[0]."/mqdefault.jpg"
 			];
 			
 			if($_POST["id"] > 0){

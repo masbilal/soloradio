@@ -15,10 +15,12 @@
 				
 				foreach($db->result() as $r){
 					if($no == 1){
+						$thumb = explode("v=",$r->linkyt);
+						$thumb = explode("&",$thumb[1]);
 			?>
 				<!-- Container -->
 				<div class="vid-container">
-					<iframe id="vid_frame" width="560" height="315" src="https://www.youtube.com/embed/<?=$r->thumbnail?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					<iframe id="vid_frame" width="560" height="315" src="https://www.youtube.com/embed/<?=$thumb[0]?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				</div>
 
 				<!-- Playlist -->
@@ -27,9 +29,9 @@
 					}
 			?>
 					<div class="item vid-list">
-						<div class="vid-item" onClick="document.getElementById('vid_frame').src='http://youtube.com/embed/<?=$r->thumbnail?>?autoplay=1&rel=0&showinfo=0&autohide=1'">
+						<div class="vid-item" onClick="document.getElementById('vid_frame').src='http://youtube.com/embed/<?=$thumb[0]?>?autoplay=1&rel=0&showinfo=0&autohide=1'">
 							<div class="thumb">
-								<img src="http://img.youtube.com/vi/<?=$r->thumbnail?>/0.jpg">
+								<img src="<?=$r->thumbnail?>">
 							</div>
 							<div class="desc">
 								<?=$r->judul?>

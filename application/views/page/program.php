@@ -7,7 +7,7 @@
 					$db = $this->db->get("program");
 					foreach($db->result() as $r){
 				?>
-                <div class="item single-music-player">
+                <div class="item single-music-player" onclick="modalMadul(<?=$r->id?>)">
                     <img src="<?=base_url("assets/uploads/".$r->foto); ?>" alt="" />
                     <div class="inner">
 						<?php if($r->audio != ""){ ?>
@@ -19,6 +19,8 @@
 							</div>
 						<?php } ?>
                     </div>
+					<div class="sr-only" id="judul_<?=$r->id?>"><?=$r->nama?></div>
+					<div class="sr-only" id="prog_<?=$r->id?>"><?=$r->detail?></div>
                 </div>
 				<?php
 					}
@@ -60,3 +62,22 @@
 
         </div>
     </div>
+	
+	<script type="text/javascript">
+		function modalMadul(prog){
+			$("#judulprogram").html($("#judul_"+prog).html());
+			$("#detailprogram").html($("#prog_"+prog).html());
+			$("#modal").modal();
+		};
+	</script>
+	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLagu" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header" id="judulprogram">
+				</div>
+				<div class="modal-body" id="detailprogram">
+					<div class="p-tb-10 p-lr-20"><i class="fas fa-spin fa-spinner"></i> Loading data...</div>
+				</div>
+			</div>
+		</div>
+	</div>
