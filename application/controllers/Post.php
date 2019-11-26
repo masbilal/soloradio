@@ -13,7 +13,7 @@ class Post extends CI_Controller {
 		$db = $this->db->get("postingan");
 		foreach($db->result() as $r){ $judul = $r->judul; }
 		
-		$this->load->view('head',["post"=>$judul]);
+		$this->load->view('head',["headerbg"=>true,"post"=>$judul]);
 		$this->load->view('post',["url"=>$url,"db"=>$db]);
 		$this->load->view('foot');
 	}
