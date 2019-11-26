@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="item-widget m-b-40">
-                        <h4 class="widget-title">Famous Update</h4>
+                        <h4 class="widget-title-sidebar">Famous Update</h4>
                         <!-- list maksimal 3 berita terbaru -->
                         <ul class="widget-list">
                             <?=$this->func->getFamousUpdate(2)?>
@@ -78,7 +78,7 @@
                     </div>
                     
                     <div class="item-widget m-b-40">
-                        <h4 class="widget-title">Fit Update</h4>
+                        <h4 class="widget-title-sidebar">Fit Update</h4>
                         <!-- list maksimal 3 berita terbaru -->
                         <ul class="widget-list">
                             <?=$this->func->getFitUpdate(2)?>
@@ -86,7 +86,7 @@
                     </div>
 
                     <div class="item-widget m-b-20">
-                         <h4 class="widget-title">Fashionable Update</h4>
+                         <h4 class="widget-title-sidebar">Fashionable Update</h4>
                         <!-- list maksimal 3 berita terbaru -->
                         <ul class="widget-list">
                             <?=$this->func->getFashionableUpdate(2)?>
