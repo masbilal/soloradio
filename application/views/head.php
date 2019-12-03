@@ -78,7 +78,9 @@
 					<?php if(isset($titel)){ ?>
 						<h3 class="l-text2"><?=$titel?></h3>
 					<?php }else{ ?>
+						<a href="<?=site_url()?>">
 						<img class="logo" src="<?php echo base_url("assets/img/logo.png"); ?>" />
+						</a>
 					<?php } ?>
                 </div>
 
